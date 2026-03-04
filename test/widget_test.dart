@@ -4,27 +4,22 @@
 // utility in the flutter_test package. For example, you can send tap and scroll
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:my_app/main.dart';
+import 'package:my_app/main.dart'; // നിങ്ങളുടെ പാക്കേജ് പേര് ശരിയാണെന്ന് ഉറപ്പുവരുത്തുക
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Ledger app smoke test', (WidgetTester tester) async {
+    // ആപ്പ് ലോഡ് ചെയ്യുന്നു
+    await tester.pumpWidget(ExpenseApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // 'Accounting Ledger' എന്ന ടൈറ്റിൽ സ്ക്രീനിൽ ഉണ്ടോ എന്ന് പരിശോധിക്കുന്നു
+    expect(find.text('Accounting Ledger'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // 'ADD TRANSACTION' ബട്ടൺ ഉണ്ടോ എന്ന് നോക്കുന്നു
+    expect(find.text('ADD TRANSACTION'), findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Floating Action Button (Add Group) ഉണ്ടോ എന്ന് നോക്കുന്നു
+    expect(find.byIcon(Icons.group_add), findsOneWidget);
   });
 }
